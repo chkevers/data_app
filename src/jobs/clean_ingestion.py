@@ -1,22 +1,11 @@
 from pyspark.sql import SparkSession
 from src.utils.operations_s3 import list_objects
+from src.utils.spark import sparkenv
 from pathlib import Path
 
 # logger = logging.getLogger('py4j')
 """Start Spark Session"""
-spark = (SparkSession
-         .builder
-         .config("spark.driver.core", "2")
-         .config("spark.hadoop.fs.s3.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-         .config("spark.driver.userClassPathFirst", "true")
-         .config("spark.driver.memory", "4g")
-         .config("spark.executor.userClassPathFirst", "true")
-         .config("spark.master", "local[2]")
-         .config("spark.eventLog.enabled", "true")
-         .config("spark.sql.sources.partitionOverwriteMode", "dynamic")
-         .getOrCreate()
-         )
-# spark.stop()
+spark = sparkenv()
 
 """Get spark session configuration"""
 

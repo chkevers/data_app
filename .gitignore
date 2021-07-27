@@ -4,3 +4,5 @@
 
 **/.idea
 **/tennis-ingest
+**/metastore_db
+**/spark-warehouse
