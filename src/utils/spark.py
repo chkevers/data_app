@@ -13,7 +13,7 @@ def sparkenv():
              .config("spark.master", "local[2]")
              .config("spark.eventLog.enabled", "true")
              .config("spark.sql.sources.partitionOverwriteMode", "dynamic")
-             .enableHiveSupport()
+             #.enableHiveSupport()
              .getOrCreate()
              )
 
