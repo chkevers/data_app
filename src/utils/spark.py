@@ -12,6 +12,7 @@ def sparkenv():
              .config("spark.executor.userClassPathFirst", "true")
              .config("spark.master", "local[2]")
              .config("spark.eventLog.enabled", "true")
+             .config("spark.sql.shuffle.partitions", "1")
              .config("spark.sql.sources.partitionOverwriteMode", "dynamic")
              #.enableHiveSupport()
              .getOrCreate()

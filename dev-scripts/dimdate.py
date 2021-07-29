@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, time, timezone
 from pyspark.sql import DataFrame, SparkSession
 from src.utils.spark import sparkenv
 from pyspark.sql.functions import (date_format,dayofmonth,from_unixtime,month, to_date, year, weekofyear)
+from pyspark.sql import functions as sf
 
 
 spark = sparkenv()
@@ -44,7 +45,10 @@ def create_date_dimension(spark: SparkSession, start: datetime, end: datetime) -
     )
 
 dimdate = create_date_dimension(spark, datetime(1950, 1, 1), datetime(2050,1,1))
-dimdate.show()
+dimdate = dimdate.withColumn("date_sk", sf.md5(dimdate.date_string))
+dimdate = dimdate.select('date_sk', 'date', 'date_string', 'day', 'day_name', 'day_short_name', 'month', 'month_name', 'month_short_name', 'year', 'week')
+dimdate.show(truncate=False)
+dimdate.columns
 dimdate.printSchema()
 
 (
