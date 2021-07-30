@@ -27,6 +27,12 @@ df_final_stage.show()
 
 l_tour_player = df_final_stage.select(sf.md5(sf.concat("tourney_sk","player_sk")).alias("TourPlayer_HK"),'*', sf.current_date().alias("load_date"),sf.lit("SINGLE").alias("SOURCE"))
 l_tour_player.show(truncate=False)
+l_tour_player.printSchema()
 
-# df_filter = h_player.filter(h_player.player_id == "104745")
-# df_filter.show()
+(
+    l_tour_player.write
+        .mode("overwrite")
+        .format("parquet")
+        .saveAsTable(path="s3://tennis-app-ck/raw_dv/prod/l_tour_player", name="l_tour_player")
+
+ )

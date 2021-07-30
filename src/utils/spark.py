@@ -8,7 +8,7 @@ def sparkenv():
              .config("spark.driver.core", "2")
              .config("spark.hadoop.fs.s3.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
              .config("spark.driver.userClassPathFirst", "true")
-             .config("spark.driver.memory", "4g")
+             .config("spark.driver.memory", "6g")
              .config("spark.executor.userClassPathFirst", "true")
              .config("spark.master", "local[2]")
              .config("spark.eventLog.enabled", "true")
